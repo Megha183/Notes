@@ -1,0 +1,97 @@
+What is Backend?
+The backend is the behind-the-scenes part of a website or app.
+It handles data processing, logic, and communication with the database.
+What is a Server?
+A server is a computer or software that stores, processes, and delivers data to users.
+When you visit a website, your browser requests data from a server.
+💡 Example:
+
+When you open Facebook, your phone sends a request to Facebook’s server.
+The server sends back your profile, posts, and messages.
+
+What is Node.js?
+Node.js is a backend runtime environment that allows JavaScript to run outside the browser, usually on a server.
+
+💡 Simple Explanation:
+
+Normally, JavaScript runs in web browsers (Chrome, Firefox).
+Node.js lets you use JavaScript to build server-side applications.
+It’s fast, scalable, and non-blocking, making it great for real-time apps.
+
+Why Use Node.js?
+✅ Uses JavaScript for backend – Same language for frontend & backend.
+✅ Fast & Efficient – Uses the V8 engine (from Google Chrome).
+✅ Handles Multiple Requests – Uses non-blocking I/O (doesn’t wait for tasks to complete).
+✅ Has a Huge Library – Comes with npm (Node Package Manager) to install packages easily.
+
+Example: If a user requests data from a server, Node.js doesn’t wait for the database to respond—it continues handling other requests.
+44Creating a Simple Server with Node.js
+
+const http = require("http");
+
+const server = http.createServer((req, res) => {
+  res.writeHead(200, { "Content-Type": "text/plain" });
+  res.end("Hello, World!");
+});
+
+server.listen(3000, () => {
+  console.log("Server running at http://localhost:3000");
+});
+Node js module system
+enabling developers to organize code into reusable and maintainable components.
+It is based on the CommonJS module specification, which uses require and module.exports to load and export modules.
+ Node.js also supports ECMAScript Modules (ESM) starting from Node.js 
+
+1. CommonJS Modules -.js
+CommonJS is the default module system in Node.js. It uses the following keywords:
+
+require(): Used to import modules.
+
+module.exports or exports: Used to export functionality from a module.
+Math.js-
+// Define functions
+const add = (a, b) => a + b;
+const subtract = (a, b) => a - b;
+
+// Export functions
+module.exports = { add, subtract };
+
+app.js
+// Import the module
+const math = require('./math');
+
+// Use the module's functions
+console.log(math.add(5, 3)); // Output: 8
+console.log(math.subtract(5, 3)); // Output: 2
+
+2. ECMAScript Modules (ESM) -.mjs or "type": "module"
+ECMAScript Modules (ESM) is the standard module system in JavaScript, using import and export syntax. Node.js supports ESM starting from version 12+.44
+
+Theree are 3 types
+---------------------
+
+ 1.Core Modules
+Node.js comes with built-in core modules that can be imported without installation. Examples include:
+
+fs: File system operations.
+http: Creating HTTP servers.
+path: Handling file paths.
+os: Operating system utilities.
+readline
+
+2. Third-Party Modules
+Third-party modules are installed via npm (Node Package Manager) and can be imported using require() or import.
+eg.chalk,axios,formidable,validator
+3.custom modules-self created
+
+ What are Global npm Modules?
+npm (Node Package Manager) allows installing packages either:
+✅ Locally – Used only in the current project (node_modules folder).
+✅ Globally – Used system-wide, accessible in any project.
+
+What is Nodemon?
+Nodemon is a global npm module that automatically restarts your Node.js server whenever you make changes to your code.
+
+📌 Why Use Nodemon?
+✔ No need to manually restart the server after every code change.
+✔ Speeds up development.
