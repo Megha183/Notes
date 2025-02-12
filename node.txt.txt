@@ -94,4 +94,154 @@ Nodemon is a global npm module that automatically restarts your Node.js server w
 
 📌 Why Use Nodemon?
 ✔ No need to manually restart the server after every code change.
-✔ Speeds up development.
+✔ Speeds up development
+
+12/02/2025
+----------
+ accessng inputs which is given in terminal
+In Node.js, you can access inputs provided in the terminal using the process object, which is a global object that provides information about 
+
+and control over the current Node.js process
+Command Line Arguments (CLA)
+Command Line Arguments are values passed to a program when it is executed via the terminal or command prompt. 
+These arguments allow users to provide inputs dynamically instead of hardcoding them in the script.
+
+How Command Line Arguments Work?
+When you run a program, you can pass arguments after the program name.
+These arguments are received by the script and processed.
+In Node.js, the arguments can be accessed using process.argv.
+
+Command-Line Arguments (process.argv):
+
+The process.argv property returns an array containing the command-line arguments passed when the Node.js process was launched.
+
+The first element (process.argv[0]) is the path to the Node.js executable.
+
+The second element (process.argv[1]) is the path to the JavaScript file being executed.
+
+Subsequent elements (process.argv[2], process.argv[3], etc.) are the additional command-line arguments provided by the user.
+Run in terminal: node script.js arg1 arg2
+When dealing with command-line arguments in the format --title="my title" (or similar key-value pairs), you can parse them manually using process.argv,
+ but it's much easier and cleaner to use a library like yargs or minimist. 
+These libraries handle the parsing of such arguments automatically.
+Using yargs (Recommended)
+yargs is a powerful library for parsing command-line arguments. It automatically handles key-value pairs like --title="my title".
+
+npm install yargs
+
+yarg.parse()-execute command
+In yargs, the .parse() method is used to parse the command-line arguments and return the parsed arguments as an object.
+ It is an alternative to accessing the parsed arguments via the .argv property.
+--------------------------------------------------------------------------------------------------------------------------------
+JSON (JavaScript Object Notation)
+JSON (JavaScript Object Notation) is a lightweight data interchange format that is easy for humans to read and write, and easy for machines to parse and generate. 
+It is widely used for transmitting data in web applications (e.g., between a server and a client).
+Objects: Unordered collections of key-value pairs enclosed in {}.
+
+Keys must be strings (enclosed in double quotes "").
+
+Values can be strings, numbers, objects, arrays, true, false, or null.
+The JSON.stringify() method converts a JavaScript object or array into a JSON string.
+The JSON.parse() method converts a JSON string into a JavaScript object.
+toString() in JavaScript
+The .toString() method is used to convert data types (numbers, arrays, objects, etc.) into a string representation.
+const num = 123;
+console.log(num.toString()); // Output: "123"
+
+Node.js fs (File System) Module
+------------------------------------------
+The fs module in Node.js is used to handle file operations like reading, writing, updating, deleting, and more.
+
+Writing to Files
+----------------
+
+Reading Files
+
+Synchronous (fs.readFileSync)
+
+const data = fs.readFileSync('file.txt', 'utf8');
+console.log(data);
+
+Blocks execution until the file is read.
+Returns the file content.
+
+Asynchronous (fs.readFile)
+
+fs.readFile('file.txt', 'utf8', (err, data) => {
+  if (err) throw err;
+  console.log(data);
+});
+Does not block execution.
+Uses a callback function to handle the file data
+
+1.Synchronous (fs.writeFileSync)
+
+fs.writeFileSync('file.txt', 'Hello, World!');
+console.log('File written successfully');
+
+Blocks execution until the file is written.
+2.Asynchronous (fs.writeFile)
+
+fs.writeFile('file.txt', 'Hello, Async!', (err) => {
+  if (err) throw err;
+  console.log('File written successfully');
+});
+Does not block execution.
+
+3.Appending to Files
+Synchronous (fs.appendFileSync)
+
+fs.appendFileSync('file.txt', '\nAppended text');
+Asynchronous (fs.appendFile)
+
+fs.appendFile('file.txt', '\nAsync Appended text', (err) => {
+  if (err) throw err;
+  console.log('Text appended');
+});
+
+4.Deleting Files
+
+Synchronous (fs.unlinkSync)
+
+fs.unlinkSync('file.txt');
+console.log('File deleted');
+Asynchronous (fs.unlink)
+
+fs.unlink('file.txt', (err) => {
+  if (err) throw err;
+  console.log('File deleted');
+});
+5.Checking if a File Exists
+
+if (fs.existsSync('file.txt')) {
+  console.log('File exists');
+} else {
+  console.log('File does not exist');
+}
+Returns true or false.
+
+6.Creating & Removing Directories
+
+Create Directory
+
+fs.mkdirSync('newDir'); // Synchronous
+fs.mkdir('newDir', (err) => { if (err) throw err; }); // Asynchronous
+
+Remove Directory
+
+fs.rmdirSync('newDir'); // Synchronous
+fs.rmdir('newDir', (err) => { if (err) throw err; }); // Asynchronous
+
+7.Renaming Files
+
+fs.renameSync('old.txt', 'new.txt'); // Synchronous
+fs.rename('old.txt', 'new.txt', (err) => { if (err) throw err; }); // Asynchronous
+
+
+Arrow Function in JavaScript
+-------------------------------
+An arrow function (=>) is a shorter and cleaner way to write function expressions in JavaScript. 
+It was introduced in ES6 and is often used for callbacks and shorter functions.
+const add = (a, b) => a + b;
+console.log(add(5, 3)); // Output: 8
+
