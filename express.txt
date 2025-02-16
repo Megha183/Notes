@@ -1,0 +1,239 @@
+postman is a tool used to test api
+
+ Express
+--------
+Express.js is a minimal and flexible Node.js framework for building web servers and APIs efficiently.
+//refer  desktop/Node/express.
+*A request can only have ONE response in Express.
+*You cannot send multiple responses in one request.
+*The error occurs because you're trying to send two responses in one request:
+
+This initializes an Express app instance.
+const app=express()
+-----------------------------------------------------------------------------
+✅handling undefined route
+----------------------------
+
+If a user tries to access a route that hasn't been defined in your Express.js app, 
+the server won't return any response by default.
+How to Handle Undefined Routes?
+You should define a catch-all route (404 handler) at the end of all route definitions.
+
+✅ Example: Adding a 404 Route Handler
+app.use((req, res) => {
+    res.status(404).send('<h1>404 - Page Not Found</h1>');
+});
+How It Works
+app.use((req, res) => { ... }) runs for any route not matched above.
+res.status(404).send('404 - Page Not Found') sends a 404 response with a message.
+
+Using /* to Handle Undefined Routes
+Instead of app.use(), you can explicitly define a catch-all route using app.get('/*', ...) or app.all('/*', ...).
+
+✅ Example: Catch-All Route Using /*
+app.get('/*', (req, res) => {
+    res.status(404).send('<h1>404 - Page Not Found</h1>');
+});
+This will match any route that hasn't been defined.
+Example: Visiting /random, /about, or /profile will return "404 - Page Not Found".
+If you want to catch all HTTP methods (GET, POST, PUT, etc.), use app.all():
+*The recommended way is to use app.use() for 404 handling:
+---------------------------------------------------------------------------------------------------------------------
+
+ ✅express middlware
+----------------
+What is Middleware?
+Middleware functions in Express.js are functions that execute during the request-response cycle. They can:
+
+Modify the request (req) and response (res) objects.
+Execute any code before passing control to the next function.
+End the request-response cycle (e.g., sending a response).
+ It has access to the req (request), res (response), and next() function, which passes control to the next middleware in the stack.
+
+Types
+-----
+A. Application-Level Middleware (app.use())
+These are executed for every request before reaching specific route handlers.
+eg:const dateGenerator = (req, res, next) => {
+    console.log(new Date());
+    next();
+};
+
+app.use(dateGenerator);
+This logs the current date and time for every request.
+
+B Built-in Middleware (express.static())
+Static file serving middleware serves files from a directory.
+
+app.use(express.json()); // Parses JSON request bodies
+app.use(express.urlencoded({ extended: true })); // Parses URL-encoded form data
+app.use(express.static('public')); // Serves static files
+📌 Use case: Body parsing, static file serving.
+Example:
+
+app.use(express.static(path.join(__dirname, 'Public')));
+Any files inside the Public folder (like index.html, CSS, images) can be accessed directly in the browser.
+
+C. Route-Specific Middleware (middleWare Array)
+These middleware functions are applied only to specific routes.
+
+const router = express.Router();
+
+router.use((req, res, next) => {
+    console.log('Router middleware called');
+    next();
+});
+
+router.get('/users', (req, res) => {
+    res.send('Users List');
+});
+
+app.use('/api', router);
+ d) Error-Handling Middleware
+Used for handling errors globally.
+Defined with four parameters: (err, req, res, next)
+
+e)Third-Party Middleware
+External middleware installed via npm.
+
+app.use(cors()); // Enables Cross-Origin Resource Sharing
+app.use(morgan('dev')); // Logs HTTP requests
+
+f) Request-Specific Middleware
+Middleware applied only to specific routes.
+const authMiddleware = (req, res, next) => {
+    if (!req.headers.authorization) {
+        return res.status(401).send('Unauthorized');
+    }
+    next();
+};
+
+app.get('/profile', authMiddleware, (req, res) => {
+    res.send('Profile Page');
+});
+📌 Use case: Authentication, permissions.
+
+g)Asynchronous	Handles async operations like DB calls	asyncMiddleware
+
+Example:
+const middleWare = [token, validation];
+app.get('/', middleWare, (req, res) => { ... });
+The token and validation middleware run before processing the / route.
+
+✅ Middleware functions execute in the order they are defined.
+✅ They modify requests (req), validate requests, or perform tasks (logging, authentication).
+✅ Calling next() is crucial to pass control to the next middleware.
+✅ If a middleware does not call next() or send a response, the request hangs indefinitely.
+✅ Middleware can be global (app.use()) or route-specific (app.get(..., middleware, handler)).
+------------------------------------------------------------------------------------------------------------------------------------
+ ✅serving statitc files
+------------------
+   express.static() is a built-in middleware in Express.js that allows you to
+  serve static files without needing to define individual routes for each file.
+
+ 1.app.use(express.static('Public'));
+2. app.use(express.static(path.join(__dirname, 'Public')))
+-__dirname is the absolute path of the directory where server.js is located.
+ path.join(__dirname, 'Public') ensures that Public is always resolved relative to the server.js file,
+  regardless of where the script is executed.
+
+here we manually  give routes and serve index file
+app.get('/',(req,res)=>{
+    res.sendFile(path.join(__dirname,'Public','index.html'))
+})
+
+*express.static() is built-in middleware that serves static files like HTML, CSS, images, and JavaScript.00
+for home route '/' it will server index.html
+
+How express.static() Works as Middleware
+When a request comes in (e.g., GET /about.html):
+
+Express checks if about.html exists in the public folder.
+If it exists, Express serves it.
+If it doesn’t exist, Express moves to the next middleware or returns 404 Not Found.
+---------------------------------------------------------------------------------------------------------------------
+
+In Express.js, there are two common ways to pass data in a request URL:
+
+Path Parameter (id)
+Query Parameter (?key=value)
+
+Query Parameters (Used for optional data)
+
+Data is passed in the URL after a ? and multiple parameters are separated by &.
+Accessed using req.query in Express.
+Example:
+
+app.get('/search', (req, res) => {
+    const keyword = req.query.keyword;
+    res.send(`Searching for: ${keyword}`);
+});
+Request URL: http://localhost:3000/search?keyword=doctor
+
+Route Parameters (Used for required or structured data)
+
+Data is embedded directly in the URL as part of the path.
+Defined using : in route definition and accessed using req.params.
+Example:
+
+app.get('/users/:id', (req, res) => {
+    const userId = req.params.id;
+    res.send(`User ID: ${userId}`);
+});
+Request URL: http://localhost:3000/users/123
+
+
+--------------------------------------------------------------------------------
+ ✅express.Router()
+express.Router() is a built-in middleware in Express.js that helps create modular and manageable route handlers
+. It allows you to define routes separately and then mount them in the main Express app.
+
+🔹 Why Use express.Router()?
+Organizes routes into separate modules.
+Improves code readability and maintainability.
+Helps create reusable route handlers
+--------------------------------------------------------------------------------
+app.use(cors()) in Express.js
+app.use(cors()) enables Cross-Origin Resource Sharing (CORS) in an Express.js app. 
+It allows your server to accept requests from different origins (domains).
+
+ ✅Why Use CORS?
+By default, browsers block cross-origin requests due to Same-Origin Policy (SOP).
+ CORS helps bypass this restriction when you need to allow frontend apps (e.g., React, Angular, Vue) to communicate with your backend.
+
+*Restricting CORS to Specific Origins
+If you want to allow only a certain domain:
+
+app.use(cors({
+    origin: 'https://your-frontend.com'
+}));
+This allows requests only from https://your-frontend.com
+
+*app.use(cors()) is useful for allowing frontend apps to access your API.
+
+-----------------------------------------------------------------------------
+ ✅app.use(express.json()) & app.use(express.urlencoded({ extended: true })) in Express.js
+These two middlewares are essential for handling incoming request data in Express applications.
+app.use(express.json())
+When receiving JSON payloads from APIs (e.g., fetch or Axios requests).
+app.use(express.urlencoded({ extended: true }))
+When handling form submissions with application/x-www-form-urlencoded.
+
+-----------------------------------------------------------------------------
+in js we can call api in 2 way
+1.xmlhttps- not recommended
+2.fetch
+ajax-asynchrnous call
+jquery-is avascript library
+
+cors-crossorigin resource sharing
+
+-------------------------------------------------------------------------------------
+✅sending post request using fetch
+------------------------------
+when sending a POST request using fetch(), you need to pass an object as the second argument. This object contains details like:
+
+method → Specifies the HTTP method (POST, GET, PUT, DELETE, etc.).
+headers → Defines the type of data being sent (usually application/json).
+body → Contains the actual data being sent, usually in JSON format.
+
