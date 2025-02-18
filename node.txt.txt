@@ -24,7 +24,8 @@ Why Use Node.js?
 ✅ Handles Multiple Requests – Uses non-blocking I/O (doesn’t wait for tasks to complete).
 ✅ Has a Huge Library – Comes with npm (Node Package Manager) to install packages easily.
 
-Example: If a user requests data from a server, Node.js doesn’t wait for the database to respond—it continues handling other requests.
+Example: If a user requests data from a server, Node.js doesn’t wait for the database to respond—it 
+continues handling other requests.
 44Creating a Simple Server with Node.js
 
 const http = require("http");
@@ -419,3 +420,22 @@ Prints the list of posts.
 ----------------------------------------------------------------------------------------------------------------
 POST Request (Sending Data)
 A POST request is used to send data to the server.
+----------------------------------------------------------------------------------------------------------
+✅ Common HTTP Status Codes
+2xx (Success)
+
+200 OK → Request successful
+201 Created → Resource created (used in POST)
+204 No Content → Success, but no response body (used in DELETE)
+4xx (Client Errors)
+
+400 Bad Request → Invalid request from client
+401 Unauthorized → Authentication required
+403 Forbidden → No permission to access
+404 Not Found → Resource not found
+5xx (Server Errors)
+
+500 Internal Server Error → General server failure
+502 Bad Gateway → Server received an invalid response from upstream
+503 Service Unavailable → Server is down or overloaded
+

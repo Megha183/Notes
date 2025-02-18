@@ -1,0 +1,127 @@
+serving html and json 
+-----------------------
+In Node.js, you can serve HTML and JSON files using the http module or with frameworks like Express.
+1.serving html-serving single file
+1.using res.sendFile
+// res.sendFile(path.join(__dirname,'Public','data.html'))
+// app.get('/',(req,res)=>{
+//     res.sendFile(path.join(__dirname,'Public','data.html'))
+
+// })
+2.express.static-for multiple
+// app.use(express.static(path.join(__dirname,'Public')))
+// app.get('/',(req,res)=>{
+//     res.send('hi')
+// })
+
+3.template engine-(Serve Dynamic Files (generated dynamically, like views))
+
+serving json
+-------------
+1.create a folder data.json
+// app.get('/',(req,res)=>{
+//     fs.readFile(path.join(__dirname,'Public','data.json'),(err,data)=>{
+//         // console.log(data.toString(),JSON.parse(data.toString()));
+//         res.json(JSON.parse(data.toString()))
+        
+//     })
+
+2.using require
+// const jsondata=require('./Public/data.json')
+// app.get('/',(req,res)=>{
+//     res.json(jsondata)
+
+// })
+2.express.static
+
+serving up static assets
+--------------------------
+Static assets are files that do not change or get processed dynamically by the
+ server during the request/response cycle.
+ they include html,css,image,fonts
+ we can serve them using express.static
+
+ app.use(express.static('Public'))
+app.get('/a',(req,res)=>{
+    // res.sendFile(path.join(__dirname,'Public','images','img1.jpg'))
+    res.send('<img src="/images/img1.jpg" alt="Image">')
+})
+
+dynamic pages with templating
+-----------------------------
+Dynamic pages with templates are web pages that generate content dynamically based on data, user input,
+ or backend responses. Instead of creating multiple static pages, 
+templates allow developers to use a single layout and populate it with different content dynamically.
+
+Templates: A base layout with placeholders for dynamic content (e.g., HTML with {} or JSX with {data} in React).
+If you need dynamic pages(where content changes based on user input) u should use templating engine
+like ejs,pug,handlebars
+
+these engines allow to create reusable html templates with dynamic content
+
+1.ejs(embedded JavaScript)
+---------------------------
+EJS (Embedded JavaScript) is a templating engine for Node.js that allows you to write dynamic HTML
+ pages by embedding JavaScript directly into your HTML files.
+ <% %> and <%= %> syntact is used to embed js code inside html template
+ 1. <% %> – Scriptlet Tag
+Purpose: It is used to run JavaScript code inside an EJS template, but does not print anything to the HTML output.
+Common Use: Useful for loops, conditionals, or any JavaScript logic where you don't want to output anything to the page.
+
+2. <%= %> – Output Tag
+Purpose: It is used to output JavaScript values (variables, expressions) to the HTML. 
+It prints the result of JavaScript code to the webpage.
+Escapes HTML: It automatically escapes any HTML content to prevent XSS attacks (malicious code).
+
+app.set()
+-----------
+used to assign settings to app in form of key value pair
+In Express.js, app.set() is used to set application-level settings. 
+It allows you to configure your Express app to customize its behavior.
+
+app.set("view engine","ejs")-view engine is predeined keyword
+keep templates in view folder
+res.render()- to render template
+
+Handlebars: A Templating Engine
+Handlebars is a popular templating engine that allows you to embed dynamic data inside HTML templates.
+Basic Syntax in Handlebars
+Variables/Placeholders: Placeholders are enclosed in double curly braces {{}}.
+Conditional Statements: Use {{#if}} and {{#else}} for conditions.
+Loops: Use {{#each}} to loop through an array of data.
+
+installing-npm install express-handlebars
+
+404 pages
+--------
+*-match anything that hasnt been matched yet-wildcard charcter
+when expres gets an incoming request it starts to look for a match
+frst itlooks for match in public folder at top,next looks in root handler, an so on,if it
+already found its match doesnt look below
+
+Understanding 404 Pages in Express.js
+In Express.js, when an incoming request is received, Express tries to match it to the defined routes. 
+If no match is found, we can handle it using a wildcard route (*) to serve a custom 404 page.
+
+working
+-------
+If you use express.static(), Express first checks if the request matches a file in the public folder.
+If no static file is matched, Express moves to the next matching route in the order they are defined.
+If no static file or defined route matches the request, Express falls through to 
+the last route (a catch-all * wildcard).
+
+In Express.js, the order in which routes are defined matters.
+ The * (wildcard) character is used to catch any unmatched routes.
+
+ How Express Handles Requests in This Case
+1. app.get('/product/*', ...) (Product-Specific 404)
+This catches any route that starts with /product/ but does not match an existing /product/:id route.
+It ensures that incorrect product pages return a specific message instead of a general 404.
+
+Better Approach: Using app.use() for a Proper 404 Page
+Instead of using app.get('*'), it's better to use app.use() so that it works for all HTTP methods (GET, POST, etc.).
+
+app.use((req, res) => {
+    res.status(404).send('<h1>404 - Page Not Found</h1>')
+})
+This method ensures that any unmatched request (regardless of method) gets a proper 404 response.
