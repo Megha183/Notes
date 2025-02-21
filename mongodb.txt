@@ -1,0 +1,235 @@
+MongoDB is a 
+NoSQL database that stores data in a flexible, JSON-like format instead of traditional tables used in SQL 
+databases. 
+
+sql,no sql difference
+sql- 
+Database → Contains multiple tables
+Table → Contains multiple rows (records)
+Row (Record) → Represents a single entry in a table
+Column → Represents a field in a row
+Uses SQL queries
+Schema is strict (predefined structure)
+
+no sql-
+Database → Contains multiple collections
+Collection → Contains multiple documents
+Document → Represents a single entry in a collection
+Field (Key-Value Pair) → Represents an attribute in a document
+Uses JSON-like queries
+Schema is flexible (dynamic structure)
+
+Tables vs Collections
+
+In SQL, data is stored in tables with predefined columns.
+In NoSQL (MongoDB), data is stored in collections containing JSON-like documents.
+
+Schema
+
+SQL requires a fixed schema (every row must have the same columns).
+NoSQL allows a flexible schema (documents in the same collection can have different fields).
+-----------------------------------------------------------------------------------------------------------
+MongoDB is a NoSQL database that stores data in a flexible, JSON-like format, and Node.js is a
+ JavaScript runtime that allows you to build scalable server-side applications. 
+Together, they form a powerful stack for building backend systems.
+
+------------------------------------------------------------------------------------------------------
+
+MongoDB Connection with Node.js – Using Mongoose & Native MongoDB Driver
+MongoDB can be connected to Node.js in two ways:
+
+Using Mongoose (Recommended) – Easier to work with schemas & models.-An ODM (Object Data Modeling) library for MongoDB
+Using the Native MongoDB Driver – Direct, lightweight connection without extra features.
+                                -The official MongoDB library for Node.js.
+-----------------------------------------------------------------------------------------------------------------
+
+Using Native MongoDB Driver (Without Mongoose)
+This method gives you direct control over MongoDB but requires manual handling of queries
+The native MongoDB driver provides direct access to MongoDB operations.
+
+1. Install MongoDB Driver
+npm install mongodb
+2. Create a Connection to MongoDB:
+In your Node.js application, require the mongodb package and establish a connection using the MongoClient.
+
+
+----------------------------------------------------------------------------------------------------------
+using Mongoose
+----------------
+Mongoose simplifies MongoDB interactions by providing a schema-based solution.
+1.npm i mongoose
+
+Schema:
+Each schema maps to a MongoDB collection and defines the shape of the documents within that collection.
+A schema defines the structure of your collection documents
+
+What is a model?
+Models take your schema and apply it to each document in its collection.
+Models are responsible for all document interactions like creating, reading, updating, and deleting (CRUD).
+
+An important note: the first argument passed to the model should be the singular form of your collection name.
+
+1.What is BSON in MongoDB? BSON (Binary JSON) is the format MongoDB uses to store data internally. It extends JSON by 
+adding additional data types such as Objectld, Date, and Binary Data that are not available in regular JSON
+*Supports additional data types → Like ObjectId, Date, and Decimal128
+
+2.What is Objectld in MongoDB? Object Id is a special BSON type used as the 
+default primary key (_id) for MongoDB documents
+ObjectId is a special data type used by MongoDB to uniquely identify documents within a collection.
+It is a 12-byte identifier typically represented as a 24-character hexadecimal string.
+
+Example: ObjectId("64b8f1c7e4b0a1a2b3c4d5e6").
+
+Structure of Objectld | 4 bytes | Timestamp An ObjectId is a 12-byte unique identifier: | Bytes | Purpose |
+ (when the document was created) | | 5 bytes | Machine identifier (unique per server)
+ | | 2 bytes | Process ID (unique per process) | | 3 bytes | Counter (random number to avoid duplication)
+
+ Timestamp Extraction → The first 4 bytes store the document creation time
+ Timestamp: The first 4 bytes of an ObjectId represent a timestamp, which can be used to
+  determine when the document was created.
+
+  Structure of an ObjectId
+An ObjectId consists of 12 bytes divided into the following parts:
+
+
+Bytes	Description
+0-3	Timestamp: Seconds since the Unix epoch (January 1, 1970).
+4-6	Machine Identifier: Unique identifier for the machine generating the ObjectId.
+7-8	Process ID: Unique identifier for the process generating the ObjectId.
+9-11	Counter: A random value that ensures uniqueness within the same second.
+
+--You can also manually create an ObjectId using the ObjectId() constructor.
+
+Example: Manually Creating an ObjectId
+const { ObjectId } = require('mongodb');
+const id = new ObjectId();
+
+You can extract the creation timestamp from an ObjectId.
+const id = new ObjectId("64b8f1c7e4b0a1a2b3c4d5e6");
+
+const timestamp = id.getTimestamp()
+
+---------------------------------------------------------------------------------------------------------------
+
+A query is a request for information or action from a database, system, or service. Queries are used to retrieve,
+ insert, update, or delete data from databases, make API requests, and even perform searches on the internet.
+
+querying document
+------------------
+ Querying Documents in MongoDB with Node.js In MongoDB, you can query documents using various
+  methods such as find(), findone(), and filtering with query conditions
+
+Promises in MongoDB
+In MongoDB, when using Mongoose (a popular ODM for MongoDB with Node.js), most database operations return Promises.
+ This allows you to handle asynchronous database queries using .then(), .catch(), or async/await.
+
+ 1. Why Use Promises in MongoDB?
+MongoDB operations (like .find(), .save(), .updateOne()) take time because they involve database communication.
+Instead of using callbacks, Promises make it easier to handle asynchronous operations in a cleaner way.
+
+2. Using Promises with Mongoose
+Example: Connecting to MongoDB with a Promise
+const mongoose = require('mongoose');
+
+mongoose.connect('mongodb://localhost:27017/mydatabase', { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log("Connected to MongoDB"))
+  .catch(err => console.error("Connection failed", err));
+.then() runs when the connection is successful.
+.catch() handles any errors.
+
+(ii) Creating a New Document with .save()
+const newUser = new User({ name: 'Alice', age: 30 });
+
+newUser.save()
+  .then(user => console.log("User saved:", user))
+  .catch(err => console.error(err));
+.save() returns a Promise when the user is saved successfully
+
+4. Using async/await for Better Readability
+Instead of .then(), you can use async/await, which makes the code easier to read.
+
+async function fetchUsers() {
+  try {
+    const users = await User.find({ age: { $gt: 25 } });
+    console.log(users);
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+fetchUsers();
+*await waits for the Promise to resolve.
+*try...catch handles errors.
+
+5. Handling Multiple Promises with Promise.all()
+If you need to execute multiple database operations at once:
+----------------------------------------------------------------------------------------------------------
+
+Data Validation and Sanitization in MongoDB with Mongoose
+When building a REST API with MongoDB and Mongoose, it's important to ensure that:
+✅ The data is valid before storing it in the database (Validation).
+✅ The data is clean and safe from malicious inputs (Sanitization).
+
+1. Data Validation in Mongoose
+
+Mongoose provides built-in validation and allows custom validation for better data integrity.
+
+(i) Built-in Validation
+Mongoose offers several built-in validators like:
+
+required → Ensures a field is present.
+unique → Ensures unique values in the database.
+min / max → Sets number range constraints.
+enum → Restricts values to predefined options.
+match → Uses regex to validate patterns (e.g., email format).
+
+const userSchema = new mongoose.Schema({
+  name: { type: String, required: [true, "Name is required"], trim: true },
+  email: { 
+    type: String, 
+    required: [true, "Email is required"], 
+    unique: true, 
+    match: [/^\S+@\S+\.\S+$/, "Please enter a valid email"] 
+  },
+  age: { type: Number, min: [18, "Minimum age is 18"], max: [100, "Maximum age is 100"] },
+  role: { type: String, enum: ["admin", "user", "doctor"], default: "user" }, // Restricts to specific values
+  password: { type: String, required: true, minlength: [6, "Password must be at least 6 characters"] },
+});
+
+
+(ii) Custom Validation
+If built-in validators are not enough, you can create custom ones using the validate function
+const userSchema = new mongoose.Schema({
+  username: { 
+    type: String, 
+    required: true, 
+    validate: {
+      validator: function(value) {
+        return /^[a-zA-Z0-9]+$/.test(value); // Allows only letters and numbers
+      },
+      message: "Username can only contain letters and numbers"
+    }
+  }
+});
+
+2. Data Sanitization in Mongoose
+Data sanitization ensures that the input is clean and safe before saving it in the database.
+
+(i) Removing Extra Spaces (trim)
+const userSchema = new mongoose.Schema({
+  name: { type: String, required: true, trim: true } // Removes extra spaces
+});
+
+(ii) Converting to Lowercase (lowercase)
+const userSchema = new mongoose.Schema({
+  email: { type: String, required: true, lowercase: true } // Converts email to lowercase
+});
+(iii) Escaping Special Characters (to prevent XSS)
+Mongoose does not automatically escape special characters (like <script>).
+For security, you can use an external sanitization library like sanitize-html:
+
+3. Validating and Sanitizing Requests in Express
+Mongoose validation is good, but it’s better to validate data before it reaches the database using express-validator.
+(i) Install express-validator(ii) Apply Validation in Routes
+
+(ii)Modify the POST /users route:

@@ -1,0 +1,101 @@
+Common MongoDB Operations
+-------------------------
+(comprehensive list of methods for interacting with MongoDB )
+
+1. Native MongoDB Driver Methods:
+Connecting to MongoDB:
+MongoClient.connect(uri, options): Connects to a MongoDB instance.
+
+Database Operations
+client.db(dbName): Selects a database.
+
+Collection Operations
+db.collection(collectionName): Selects a collection.
+
+Insert Operations
+collection.insertOne(document): Inserts a single document.
+collection.insertMany(documents): Inserts multiple documents.
+
+Find Operations
+collection.find(query): Finds documents matching a query.
+collection.findOne(query): Finds a single document matching a query.
+
+Update Operations
+collection.updateOne(filter, update): Updates a single document.
+collection.updateMany(filter, update): Updates multiple documents.
+
+Delete Operations
+collection.deleteOne(filter): Deletes a single document.
+collection.deleteMany(filter): Deletes multiple documents.
+
+Aggregation
+collection.aggregate(pipeline): Performs aggregation operations.
+
+Closing the Connection
+client.close(): Closes the MongoDB connection.
+
+2. Mongoose Methods:
+Connecting to MongoDB
+mongoose.connect(uri, options): Connects to a MongoDB instance.
+
+Defining a Schema
+mongoose.Schema(definition): Defines a schema.
+
+Creating a Model
+mongoose.model(modelName, schema): Creates a model.
+
+-------------------------------------------------------------------------------------------------------------------
+Insert Operations- we can insert documents in two ways
+---------------------------------------------------------
+Model.create(document): Inserts a single document.
+
+Model.insertMany(documents): Inserts multiple documents.
+insertng multiple documents:
+User.create([
+  { name: 'Alice', age: 25 },
+  { name: 'Bob', age: 28 },
+]);
+
+.save():-
+// Create an instance of the model
+const user = new User({ name: 'John', age: 30 });
+
+// Save the instance to the database
+await user.save();
+
+
+When to Use Which?
+Use Model.create() When:
+You want to insert one or more documents in a single step.
+You don’t need to modify the document before saving.
+You prefer a concise and straightforward approach.
+
+Use save() When:
+You need to perform additional operations on the document before saving (e.g., adding timestamps, modifying fields).
+You want to work with the document instance before persisting it.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Find Operations
+Model.find(query): Finds documents matching a query.
+Model.findOne(query): Finds a single document matching a query.
+
+Update Operations
+Model.updateOne(filter, update): Updates a single document.
+Model.updateMany(filter, update): Updates multiple documents.
+
+Delete Operations
+Model.deleteOne(filter): Deletes a single document.
+Model.deleteMany(filter): Deletes multiple documents.
+
+Aggregation
+Model.aggregate(pipeline): Performs aggregation operations.
+
+Instance Methods
+document.save(): Saves a document.
+
+Static Methods
+Model.findById(id): Finds a document by its ID.
+
+closing the Connection
+mongoose.connection.close(): Closes the MongoDB connection.

@@ -125,3 +125,58 @@ app.use((req, res) => {
     res.status(404).send('<h1>404 - Page Not Found</h1>')
 })
 This method ensures that any unmatched request (regardless of method) gets a proper 404 response.
+
+1. What is HBS (Handlebars.js)?
+HBS (Handlebars.js) is a templating engine for Node.js that helps generate dynamic HTML pages.
+ It allows inserting variables, loops, and conditions inside HTML templates.
+npm install hbs
+
+app.set("view engine", "hbs") tells Express to use HBS as the template engine.
+Templates should be placed in the views folder.
+
+Handlebars Variables & Expressions
+1.{{variable}} – Output Variables
+2if statemnt
+   {{#if isLoggedIn}}
+    {{else}}
+    {{/if}}
+3.map-{{#each users}}
+        <li>{{this}}</li>
+    {{/each}}
+
+Using Partials (Reusable Components)
+--------------------------------------
+1Create a Partial (views/partials/header.hbs)
+2.Use the Partial in Other Templates
+  {{> header}}
+<h2>Welcome to my website!</h2>
+3. Register Partials in Express
+const hbs = require('hbs');
+hbs.registerPartials(__dirname + '/views/partials');
+
+--------------------------------------------------------------------------------------------------------
+
+
+Customizing the Views Directory in Express.js with Handlebars (hbs)
+----------------------------------------------------------------
+By default, Express looks for templates inside a views/ folder in the root directory. However, 
+you can customize the views directory to a different path.
+---------------------------------------------------------------------------------------------------------
+How to Change the Views Directory
+Use the app.set('views', path.join(__dirname, 'custom_views')) method to define a custom views folder.
+---------------------------------------------------------------------------------------------------------
+
+Default Function Parameters in JavaScript
+------------------------------------------
+Default function parameters allow you to assign a default value to a function parameter in
+ case no argument is provided or undefined is passed.
+
+function greet(name = "Guest") {
+    console.log(`Hello, ${name}!`);
+}
+
+greet(); // Output: Hello, Guest!
+greet("Alice"); // Output: Hello, Alice!
+---------------------------------------------------------------------------------------------------------
+
+
