@@ -1,0 +1,33 @@
+using dotenv in node js
+------------------------
+npm install dotenv
+In the root directory of your project, create a .env file and add your environment variables
+
+At the top of your main file (server.js or app.js), add:
+require('dotenv').config();
+const PORT = process.env.PORT || 3000;
+
+dotenv package is used to load envirment variables from a .env file into process.env in node js applications.This
+helps in managing configuration settings seprately from the code
+
+
+validation and sanitization
+-------------------------
+it's essential to validate and sanitize user inputs to prevent security risks like SQL 
+injection, XSS, and incorrect data storage.
+
+1. Validation in Node.js & MongoDB
+Validation ensures that data is correct before saving it to the database.
+
+2. Sanitization in Node.js
+allows to alter data before saving it
+Sanitization helps remove malicious code (e.g., scripts) from user input.
+eg.removing empty spaces around username
+
+async/await
+-----------
+async unction always returns a promise
+
+What is async/await?
+async is used to declare an asynchronous function. It automatically returns a promise.
+await is used to pause the execution of an async function until a promise is resolved.
