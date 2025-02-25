@@ -3,3 +3,58 @@ auhetication
 ------------------
 
 1.securely storing users passwords in db
+
+bycrypt
+-------
+bcrypt is a library in Node.js used for hashing passwords securely. It helps protect user passwords by applying a 
+hashing algorithm with salting,making it difficult for attackers to reverse-engineer passwords 
+it is a very secure widely used hashing algorithm.It is a library that provides methods to hash and compare passwords in node js
+
+// creating hashed psw
+    const hashedPsw=await bycrypt.hash(data.password,saltRounds)
+
+    // check if psw matches(compare hashed psw from db with plain text)
+    const isPswMatch=await brcrypt.cpmare(req.body.psw,isExist.psw)
+
+Authentication & authorization
+Authentication is verifying a user's identity, while authorization is granting that user access to specific resources
+
+cors allows front end apps to access the api 
+
+-------------------------------------------------------------------------------------------------------------
+jwt-json web token
+------------------
+npm i jsonwebtoken-used for jwt Authentication
+
+What Does "JWT Authentication is Stateless" Mean?
+Stateless authentication means that the server does not store user session data
+ Stateless Authentication → No need to store sessions on the server.
+
+Structure of JWT
+A JWT consists of three parts, separated by dots (.):
+header.payload.signature
+
+How JWT Works?
+User logs in → Server verifies credentials.
+Server creates a JWT → Includes user details and an expiration time.
+JWT is sent to the client → Stored in local storage or cookies.
+Client makes requests with JWT → Sent in the Authorization header.
+
+JWT Methods in jsonwebtoken (Node.js)
+The jsonwebtoken library provides methods to generate, verify, and decode JWTs.
+
+Creates a JWT
+1. jwt.sign(payload, secret, options)
+Parameters:
+
+payload: Data to encode (e.g., user ID, role).
+secret: Secret key used to sign the token.
+options: (Optional) Expiry time, algorithm, etc.
+
+const token = jwt.sign(payload, secret, { expiresIn: "1h" });
+
+2.Checks if a token is valid
+jwt.verify(token, secret, callback)
+
+3.Reads the token without verifying it
+jwt.decode(token, options)
