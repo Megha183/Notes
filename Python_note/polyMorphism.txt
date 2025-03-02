@@ -1,0 +1,19 @@
+
+
+polyMorphism
+------------
+Polymorphism means "many forms." It allows one function, method,
+ or operator to work in different ways depending on the object.
+
+ What is Operator Overloading?
+Operator overloading allows changing the behavior of operators (+, -, *, etc.) for custom objects.
+
+implicit overloading
+print(5 + 3)       # Output: 8 (Addition)
+print("Hello" + " World")  # Output: Hello World (String Concatenation)
+
+-------------------------------------------------------------------------------------------
+
+Dunder (Double Underscore) Functions in Python (Magic Methods)
+🔹 Dunder functions (also called magic methods) are special methods in Python that start 
+and end with double underscores (__method__).

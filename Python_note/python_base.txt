@@ -1,0 +1,535 @@
+Introduction to Python 🐍
+Python is a high-level, interpreted programming language that is widely used for web development,
+ data analysis, artificial intelligence, automation, and more
+
+ Python Features
+✔ Interpreted – Runs line by line without compiling.
+✔ Dynamically Typed – No need to define variable types explicitly.
+✔ Object-Oriented – Supports OOP concepts like classes and objects.
+✔ Extensive Libraries – Built-in modules for various functionalities.
+
+Writing Your First Python Program
+print("Hello, World!")
+
+to check versin - py -v or python -v
+
+cmd=>py demo.py
+
+Running Python Programs: Interactive & Script Mode
+Python can be run in two ways:
+
+Interactive Mode (REPL - Read-Eval-Print Loop)
+Script Mode (Running .py files)
+
+1️⃣ Interactive Mode (REPL)
+In this mode, you type Python commands one by one, and they execute immediately.
+It is useful for testing small code snippets or debugging.
+to Exit
+Type exit() or quit(), or press Ctrl + Z (Windows) or Ctrl + D (Mac/Linux).
+
+2️⃣ Script Mode (Running Python Files)
+In script mode, you write Python code in a file and execute the whole script at once.
+
+2️⃣ Script Mode (Running Python Files)
+In script mode, you write Python code in a file and execute the whole script at once.
+
+Since Python is a high-level language, it requires a translator to convert Python code 
+into a form that the computer can execute.
+
+Python uses an interpreter to translate
+
+Python Indentation
+🔹 What is Indentation?
+Indentation refers to spaces or tabs at the beginning of a line of code. In Python, 
+indentation is required to define blocks of code (like loops, functions, and conditions). Unlike
+ other languages that use {} (curly braces), Python uses indentation to structure the code.
+
+  input() Function in Python
+The input() function is used to take user input as a string.
+
+name = input("Enter your name: ")
+print("Hello, " + name + "!")
+
+Converting input() to Other Data Types
+By default, input() returns a string. If you need a number, convert it using int() or float().
+
+Formatted Strings (f-strings)
+f-strings (formatted strings) make string formatting easier in Python.
+
+name = input("Enter your name: ")
+age = int(input("Enter your age: "))
+print(f"Hello, {name}! You are {age} years old.")
+
+What is a Variable?
+A variable is a name that stores a value in memory.
+
+ In Python, you don’t need to declare the type of a variable—it is assigned automatically.
+
+ Variable Naming Rules
+✅ Allowed:
+
+Must start with a letter or underscore (_)
+Can contain letters, numbers, and underscores (_)
+Case-sensitive (Age and age are different)
+❌ Not Allowed:
+
+Cannot start with a number (2name ❌)
+Cannot contain special characters (name@ ❌)
+Cannot use reserved words (like if, while, for)
+
+Constants in Python
+A constant is a variable whose value should not change.
+🔹 Python does not have built-in constants, but by convention,
+ we use uppercase names to indicate a constant.
+
+ type() Function in Python
+The type() function in Python is used to check the data type of a variable or value.
+
+ Data Types in Python (Detailed Explanation)
+Python has built-in data types that classify different kinds of values stored in variables.
+ The main data types are:
+
+Numeric Types (int, float, complex)
+Sequence Types (str, list, tuple, range)
+Set Types (set, frozenset)
+Mapping Type (dict)
+Binary Types (bytes, bytearray, memoryview)
+None Type (NoneType)
+
+
+1.Numeric:
+---------
+ Integer (int)
+Stores whole numbers (positive or negative).
+Floating Point (float)
+Stores decimal numbers.
+Complex Numbers (complex)
+Represents numbers with a real and imaginary part.
+Written as a + bj where j represents the square root of -1.
+
+2.Boolean Type (bool)
+Represents True or False values.
+Internally, True = 1 and False = 0.
+
+3.Sequence Types
+ Strings (str)
+A sequence of characters enclosed in ' ' or " ".
+for multiline """ is used
+Strings are immutable (cannot be changed after creation).
+eg:name = "Python"
+print(name[0])  # 'P'
+
+
+Lists (list)
+Ordered, mutable, allows duplicate values
+eg:fruits = ["apple", "banana", "cherry"]
+fruits.append("orange")  # Adds 'orange' to the list
+
+Tuples (tuple)
+Ordered, immutable, allows duplicate values
+eg:colors = ("red", "green", "blue")
+
+Range (range)
+Generates a sequence of numbers
+r = range(5)  # [0, 1, 2, 3, 4]
+
+4. Set Types
+
+Set (set)
+Unordered, mutable, no duplicates
+eg:unique_numbers = {1, 2, 3, 3, 4}  # {1, 2, 3, 4}
+
+Frozen Set (frozenset)
+Immutable version of a set
+eg:frozen = frozenset({1, 2, 3})
+
+5. Mapping Type
+ Dictionary (dict)
+Stores key-value pairs
+
+eg:person = {"name": "Alice", "age": 25}
+print(person["name"])  # Alice
+
+6. Binary Data Types
+Bytes (bytes)
+Immutable binary data
+eg:b = b"Hello"
+
+Bytearray (bytearray)
+Mutable version of bytes
+eg:ba = bytearray([65, 66, 67])  # A, B, C
+
+MemoryView (memoryview)
+Used for handling binary data efficiently
+
+7. None Type
+NoneType represents the absence of a value
+
+eg x-None
+
+Operators in Python 🐍
+Operators are symbols that perform operations on variables and values.
+
+1. Arithmetic Operators 🔢
+Used for mathematical operations.Used for mathematical operations.
+
+	Description	Example
++	Addition	5 + 3 → 8
+-	Subtraction	5 - 3 → 2
+*	Multiplication	5 * 3 → 15
+/	Division	5 / 2 → 2.5
+//	Floor Division	5 // 2 → 2 (removes decimal)
+%	Modulus (remainder)	5 % 2 → 1
+**	Exponentiation	2 ** 3 → 8 (2³)
+
+2. Comparison Operators 🔍
+Used to compare two values (returns True or False).
+
+Operator	Description	Example
+==	Equal to	5 == 5 → True
+!=	Not equal to	5 != 3 → True
+>	Greater than	5 > 3 → True
+<	Less than	5 < 3 → False
+>=	Greater than or equal to	5 >= 5 → True
+<=	Less than or equal to	3 <= 5 → True
+
+3. Logical Operators 🧠
+Used to combine conditional statements.
+
+Operator	Description	Example
+and	Returns True if both conditions are True	(5 > 3) and (3 > 1) → True
+or	Returns True if at least one condition is True	(5 > 3) or (3 < 1) → True
+not	Reverses the result	not (5 > 3) → False
+
+4. Assignment Operators 📝
+Used to assign values to variables.
+
+Operator	Description	Example
+=	Assigns value	x = 5
++=	Adds and assigns	x += 2 (x = x + 2)
+-=	Subtracts and assigns	x -= 3 (x = x - 3)
+*=	Multiplies and assigns	x *= 2 (x = x * 2)
+/=	Divides and assigns	x /= 2 (x = x / 2)
+//=	Floor divides and assigns	x //= 2 (x = x // 2)
+%=	Modulus and assigns	x %= 3 (x = x % 3)
+**=	Exponentiation and assigns	x **= 2 (x = x ** 2)
+
+5. Bitwise Operators 💡
+Used for binary calculations.
+
+Operator	Description	Example (Binary)
+&	AND	5 & 3 → 1 (0101 & 0011 = 0001)
+`	`	OR
+^	XOR	5 ^ 3 → 6 (0101 ^ 0011 = 0110)
+~	NOT	~5 → -6 (inverts bits)
+<<	Left Shift	5 << 1 → 10 (0101 → 1010)
+>>	Right Shift	5 >> 1 → 2 (0101 → 0010)
+
+
+
+What is Operator Precedence?
+Operator precedence determines the order in which operators are evaluated in an expression.
+Higher precedence operators are executed before lower precedence operators.
+Parentheses () can be used to explicitly specify order.
+Operator Precedence Table (Highest to Lowest)
+Precedence	Operator	Description
+1 (Highest)	()	Parentheses (Grouping)
+2	**	Exponentiation (Power)
+3	+x, -x, ~x	Unary plus, minus, bitwise NOT
+4	*, /, //, %	Multiplication, Division, Floor Division, Modulus
+5	+, -	Addition, Subtraction
+6	<<, >>	Bitwise shift (Left, Right)
+7	&	Bitwise AND
+8	^	Bitwise XOR
+9	|	Bitwise OR
+10	==, !=, >, <, >=, <=	Comparison operators
+11	not	Logical NOT
+12	and	Logical AND
+13 (Lowest)	or	Logical OR
+
+
+Type Conversion in Python 🔄
+Type conversion refers to converting one data type into another. 
+Python provides two ways to perform type conversion:
+
+Implicit Type Conversion (Automatic)
+Explicit Type Conversion (Type Casting)
+
+1.Implicit Type Conversion (Automatic)
+Python automatically converts one data type to another when no data loss occurs.
+
+x = 10   # Integer
+y = 2.5  # Float
+result = x + y   # Python automatically converts x to float
+print(result)    # Output: 12.5
+print(type(result))  # Output: <class 'float'>
+
+*Python upgrades the smaller data type (int → float → complex) automatically
+
+2.Explicit Type Conversion (Type Casting)
+In explicit conversion, we manually convert one type to another using built-in functions
+
+Common Type Casting Functions
+Function	Converts to
+int()	Integer
+float()	Floating point number
+str()	String
+list()	List
+tuple()	Tuple
+dict()	Dictionary
+set()	Set
+
+Escape Sequences in Python 🔥
+Escape sequences are special characters used inside strings to represent things 
+that cannot be typed directly, like new lines, tabs, or quotes.
+
+Common Escape Sequences in Python
+Escape Sequence	Meaning	Example	Output
+\n	New Line	print("Hello\nWorld")	Hello
+World
+\t	Tab (4 spaces)	print("Hello\tWorld")	Hello World
+\\	Backslash	print("C:\\Users\\Admin")	C:\Users\Admin
+\'	Single Quote	print('It\'s a book')	It's a book
+\"	Double Quote	print("He said, \"Hello\"")	He said, "Hello"
+\r	Carriage Return	print("Hello\rWorld")	World
+\b	Backspace	print("Hello\bWorld")	HellWorld
+\f	Form Feed	print("Hello\fWorld")	Hello ⬜ World
+\v	Vertical Tab	print("Hello\vWorld")	Hello ⬇️ World
+
+### **Python String Operations - Theoretical Notes**  
+
+#### **1️⃣ String in Python**  
+- A string is a sequence of characters enclosed in single (`'`), double (`"`), or triple (`''' """`) quotes.  
+- Strings are **immutable**, meaning they cannot be changed once created.  
+
+#### **2️⃣ String Concatenation**  
+- Combining two or more strings using the `+` operator.  
+- Example: `"Hello" + " World" → "Hello World"`
+
+#### **3️⃣ String Repetition**  
+- Multiplying a string using the `*` operator to repeat it multiple times.  
+- Example: `"Hello " * 3 → "Hello Hello Hello"`
+
+#### **4️⃣ String Indexing**  
+- Each character in a string has an index starting from `0` (left to right) and `-1` (right to left).  
+- Example: `"Python"[0] → 'P'`, `"Python"[-1] → 'n'`
+
+#### **5️⃣ String Slicing**  
+- Extracting a portion of a string using `[start:end:step]`.  
+- Example: `"Python"[0:4] → "Pyth"`  
+
+#### **6️⃣ String Length**  
+- The `len()` function returns the number of characters in a string.  
+- Example: `len("Python") → 6`
+
+#### **7️⃣ Membership Operators (`in`, `not in`)**  
+- Used to check if a substring exists within a string.  
+- Example: `"Python" in "Python is great"` → `True`
+
+#### **8️⃣ Changing Case in Strings**  
+- `.upper()` → Converts string to uppercase.  
+- `.lower()` → Converts string to lowercase.  
+- `.title()` → Capitalizes the first letter of each word.  
+- `.capitalize()` → Capitalizes only the first letter.  
+- `.swapcase()` → Swaps uppercase to lowercase and vice versa.
+
+#### **9️⃣ Removing Spaces**  
+- `.strip()` → Removes leading and trailing spaces.  
+- `.lstrip()` → Removes leading spaces.  
+- `.rstrip()` → Removes trailing spaces.  
+
+#### **🔟 Replacing Substrings**  
+- `.replace(old, new)` replaces occurrences of a substring with another substring.  
+- Example: `"I love Java".replace("Java", "Python") → "I love Python"`
+
+#### **1️⃣1️⃣ Splitting & Joining Strings**  
+- `.split(separator)` → Splits the string into a list based on a separator.  
+- `"apple,banana".split(",") → ['apple', 'banana']`  
+- `" ".join(['Hello', 'World']) → "Hello World"`
+
+#### **1️⃣2️⃣ Finding Substrings**  
+- `.find(substring)` → Returns the index of the first occurrence of the substring, or `-1` if not found.  
+- Example: `"Python is great".find("is") → 7`
+
+#### **1️⃣3️⃣ Counting Occurrences**  
+- `.count(substring)` → Returns the number of times a substring appears in the string.  
+- Example: `"banana banana".count("banana") → 2`
+
+#### **1️⃣4️⃣ Checking Start & End of a String**  
+- `.startswith(substring)` → Checks if a string starts with a specific substring.  
+- `.endswith(substring)` → Checks if a string ends with a specific substring.  
+
+#### **1️⃣5️⃣ Checking String Type**  
+- `.isalnum()` → Returns `True` if the string contains only letters and digits.  
+- `.isalpha()` → Returns `True` if the string contains only letters.  
+- `.isdigit()` → Returns `True` if the string contains only digits.
+
+#### **1️⃣6️⃣ String Formatting**  
+- **f-strings**: `f"My name is {name} and I am {age} years old."`  
+- **`format()` method**: `"My name is {} and I am {} years old.".format(name, age)`  
+
+📌 **This is a complete theoretical summary of Python string operations. Copy and paste for reference! 🚀**
+
+
+What are Conditional Statements?
+Conditional statements allow a program to make decisions based on conditions.
+They use expressions that evaluate to True or False.
+Common keywords: if, elif, else.
+
+### **Conditional Statements in Python - Theoretical Notes**  
+
+#### **1️⃣ What are Conditional Statements?**  
+- Conditional statements allow a program to make decisions based on conditions.  
+- They control the flow of execution depending on whether a condition is `True` or `False`.  
+- Python provides the following conditional statements: `if`, `if-else`, `if-elif-else`, and nested `if`.  
+
+---
+
+#### **2️⃣ `if` Statement**  
+- The `if` statement executes a block of code if the given condition evaluates to `True`.  
+- **Syntax:**  
+  ```python
+  if condition:
+      # Code to execute if condition is True
+  ```
+- **Example:**  
+  ```python
+  num = 10
+  if num > 0:
+      print("Positive number")  # Output: Positive number
+  ```
+
+---
+
+#### **3️⃣ `if-else` Statement**  
+- The `if-else` statement provides an alternative execution path if the condition is `False`.  
+- **Syntax:**  
+  ```python
+  if condition:
+      # Code if condition is True
+  else:
+      # Code if condition is False
+  ```
+- **Example:**  
+  ```python
+  num = -5
+  if num >= 0:
+      print("Positive number")
+  else:
+      print("Negative number")  # Output: Negative number
+  ```
+
+---
+
+#### **4️⃣ `if-elif-else` Statement**  
+- The `if-elif-else` statement allows checking multiple conditions sequentially.  
+- The first `True` condition executes, and the rest are ignored.  
+- If none of the conditions are `True`, the `else` block executes.  
+- **Syntax:**  
+  ```python
+  if condition1:
+      # Code if condition1 is True
+  elif condition2:
+      # Code if condition2 is True
+  elif condition3:
+      # Code if condition3 is True
+  else:
+      # Code if none of the conditions are True
+  ```
+- **Example:**  
+  ```python
+  marks = 85
+  if marks >= 90:
+      print("Grade: A")
+  elif marks >= 80:
+      print("Grade: B")  # Output: Grade: B
+  elif marks >= 70:
+      print("Grade: C")
+  else:
+      print("Grade: D")
+  ```
+
+---
+
+#### **5️⃣ Nested `if` Statements**  
+- An `if` statement inside another `if` statement is called a **nested if**.  
+- This allows checking multiple conditions in a structured way.  
+- **Syntax:**  
+  ```python
+  if condition1:
+      if condition2:
+          # Code if both condition1 and condition2 are True
+      else:
+          # Code if condition1 is True but condition2 is False
+  else:
+      # Code if condition1 is False
+  ```
+- **Example:**  
+  ```python
+  age = 20
+  has_id = True
+
+  if age >= 18:
+      if has_id:
+          print("You can enter.")  # Output: You can enter.
+      else:
+          print("ID required.")
+  else:
+      print("You are too young.")
+  ```
+
+---
+
+#### **6️⃣ Short-Hand `if` (Ternary Operator)**  
+- A **single-line** `if-else` statement, also known as a **ternary operator**.  
+- **Syntax:**  
+  ```python
+  value_if_true if condition else value_if_false
+  ```
+- **Example:**  
+  ```python
+  age = 18
+  message = "Adult" if age >= 18 else "Minor"
+  print(message)  # Output: Adult
+  ```
+
+---
+
+#### **7️⃣ Logical Operators in Conditions**  
+- **Logical operators** help combine multiple conditions in a single `if` statement.  
+- **`and`** → Both conditions must be `True`.  
+- **`or`** → At least one condition must be `True`.  
+- **`not`** → Negates a condition (`True` becomes `False`, and vice versa).  
+
+**Example Using Logical Operators:**  
+```python
+age = 20
+has_id = False
+
+if age >= 18 and has_id:
+    print("You can enter.")
+else:
+    print("Entry denied.")  # Output: Entry denied.
+```
+
+---
+
+#### **8️⃣ Using `pass` Statement in `if`**  
+- The `pass` statement is used as a placeholder when no action is required in an `if` block.  
+- **Example:**  
+  ```python
+  num = 10
+  if num > 0:
+      pass  # Placeholder for future code
+  ```
+
+---
+
+What is a Ternary Operator?
+A ternary operator (also called a conditional expression) is a one-line shorthand
+ for if-else statements.
+It evaluates a condition and returns a value based on whether the condition is True or False.
+syntax:value_if_true if condition else value_if_false
+
+Loops in Python - Theoretical Notes
+Loops are used to execute a block of code multiple times. Python provides two types of loops:

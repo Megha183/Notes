@@ -1,0 +1,32 @@
+dictionary:
+A dictionary in Python is a collection of key-value pairs. 
+It is used to store data in a structured way where each key is unique.
+we can store an data type in dict as values
+in keys we cant use lists ,dict-since they are changeable
+ddefine empty dict->  empty={}
+
+
+*they are unoredred ,mutable(cahngeable) and dont allow duplicate keys(they dont have index)
+
+*accessing elements
+print(student["name"])
+ get() is safer because it returns None if the key is missing, while [] gives an error.
+
+ to print all keys-dict.keys()
+ to print all value-dict.values()
+
+set
+---
+Sets in Python 🌀
+inside sets duplicate values are ignored
+A set in Python is a collection of unique elements. It is unordered, mutable, and does not allow duplicate values.
+set is mutable,we can add or remove elements but its elements are immutable
+cant store tuple,list in set since they are mutable
+nums{1,2,3,4}
+*duplicate values are ignored
+ddefine empty set->  emptySet=set()
+
+
+
+list,dict-mutable
+tuple,set-not mutable

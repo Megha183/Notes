@@ -1,0 +1,139 @@
+OOP
+----
+Class: A class is a blueprint or template for creating objects. . 
+It defines the properties (attributes) and behaviors (methods) of the objects.
+
+Object: An instance of a class.
+
+eg:class Car:  
+    def __init__(self, brand, model):  # Constructor invokes during object creation
+        self.brand = brand  
+        self.model = model  
+
+    def display_info(self):  
+        return f"Car: {self.brand} {self.model}"  
+
+__init__() function is a constructor method in Python. It initializes the object’s state when the object is created
+-------------------------------------------------------------------------------------------
+
+2. Attributes
+Instance Attributes: Unique to each object.
+
+Class Attributes: Shared across all instances of the class.
+
+------------------------------------------------------------------------------------------------------------
+The @staticmethod decorator in Python is used to define a static method inside a class. 
+method that dont use self parameter
+A static method does not depend on instance attributes
+ (self) or class attributes (cls) and behaves like a regular function inside a class.
+
+------------------------------------------------------------------------------------------------------------
+del keyword
+---------
+used to delete object properties or object itself
+ del s1.name
+ el s1
+
+private(like) attributes and methods
+-------------------------------------
+private attributes and methods are meant to be used only within the class and are no accesibe from outside the class
+prevents exposing instant attributes under class 
+class Account:
+    def __init__(self, acno, acpsw):
+        self.acno = acno        # Public attribute
+        self.__acpsw = acpsw    # Private attribute
+
+    def getPsw(self):
+        return self.__acpsw     # Public method to access private data
+
+acc1 = Account("123", "abc")
+
+# print(acc1.__acpsw)  # This will cause an AttributeError
+
+print(acc1.getPsw())  # Accessing private data via getter method
+
+* Private Attribute (self.__acpsw)
+The __acpsw attribute (account password) is declared as private by prefixing it with double underscores (__).
+This means it cannot be accessed directly from outside the class.
+----------------------------------------------------------------------------------------------------
+
+there are 3 methods
+Instance Methods
+Class Methods (@classmethod)
+Static Methods (@staticmethod)
+
+1. Instance Methods
+👉 These are regular methods that operate on instance variables and use self to access instance attributes.
+
+2. Class Methods (@classmethod)
+👉 Class methods work on class-level attributes rather than instance attributes.
+👉 They use cls instead of self.
+
+class Animal:
+    species = "Mammal"  # Class attribute
+
+    @classmethod
+    def get_species(cls):
+        return f"All animals belong to the {cls.species} category"
+
+print(Animal.get_species())  
+# Output: "All animals belong to the Mammal category"
+
+
+3. Static Methods (@staticmethod)
+👉 Independent methods that don't use self or cls.
+
+class MathUtils:
+    @staticmethod
+    def add(a, b):
+        return a + b
+
+print(MathUtils.add(5, 3))  # Output: 8
+
+
+property method
+----------------
+The @property decorator allows you to use methods like attributes.
+
+class Person:
+    def __init__(self, name):
+        self._name = name  # Private attribute (by convention, `_name` is used)
+
+    @property
+    def name(self):  # Acts like an attribute
+        return self._name
+
+p = Person("John")
+print(p.name)  # Output: John  ✅ No need to call a method like p.name()
+
+
+*study @getter and @setter decorator
+
+
+4 pillars of OOP
+----------------
+abstraction
+encapsulation
+inheritace
+Polymorphism
+---------------------------------------------------------------------------------------------------------------
+
+abstraction
+------------
+Abstraction means hiding unnecessary details and showing only the essential features of an object.
+
+For example:
+
+When you drive a car, you just use the steering wheel, accelerator, and brakes.
+You don’t need to know how the engine, fuel system, or gears work internally.
+The complexity is hidden, and you only use what is necessary.
+
+Data abstraction in Python is a programming concept that hides complex implementation details while exposing
+ only essential information and functionalities to users
+
+
+ Encapsulation
+ --------------
+ Encapsulation means protecting data by restricting direct access to it and allowing 
+ only controlled access through methods.
+ Python achieves encapsulation by using private variables (prefixing with __) and getter/setter methods.

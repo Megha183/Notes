@@ -1,0 +1,56 @@
+
+Inheritance
+-----------
+types:
+1.single inheritance
+2.multi-level inheritance
+3.multiple inheritace
+
+------------------------------------------------------------------------------------------------------------
+1. Single Inheritance
+👉 A child class inherits from one parent class.
+The child class gets access to the parent class’s attributes and method
+
+2. Multiple Inheritance
+A child class inherits from more than one parent class.
+
+The child class has access to attributes and methods from all parent classes.
+
+*Method Resolution Order (MRO):
+In multiple inheritance, Python uses the MRO to determine the order in which methods are resolved.
+print(Child.mro())
+
+3. Multilevel Inheritance
+A child class inherits from a parent class, which in turn inherits from another parent class.
+
+This creates a chain of inheritance.
+
+4. Hierarchical Inheritance
+Multiple child classes inherit from a single parent class.
+
+This creates a hierarchy of classes.
+
+5. Hybrid Inheritance
+A combination of two or more types of inheritance.
+
+For example, a mix of multiple and hierarchical inheritance.
+*super()
+-------
+method used to acccess methods of the parent class
+super() is used to call methods of the parent class, not to directly assign values to attributes.
+
+class Emp():
+    def __init__(self, id, name, Add):
+        self.id = id
+        self.name = name
+        self.Add = Add
+
+# Class freelancer inherits EMP
+class Freelance(Emp):
+    def __init__(self, id, name, Add, Emails):
+        super().__init__(id, name, Add)
+        self.Emails = Emails
+
+The Emp class has an __init__ method that initializes the id, and name and Adds attributes. 
+The Freelance class inherits from the Emp class and adds an additional attribute called Emails.
+ It calls the parent class’s __init__ method super() to initialize the inherited attribute.
