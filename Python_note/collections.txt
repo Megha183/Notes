@@ -1,7 +1,7 @@
 dictionary:
 A dictionary in Python is a collection of key-value pairs. 
 It is used to store data in a structured way where each key is unique.
-we can store an data type in dict as values
+we can store any data type in dict as values
 in keys we cant use lists ,dict-since they are changeable
 ddefine empty dict->  empty={}
 

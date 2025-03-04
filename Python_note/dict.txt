@@ -1,0 +1,54 @@
+dict
+---
+data = {
+     "name": "John",
+     "age": 25,
+     "city": "New York"
+ }
+
+ *we cant sto students mark
+
+*ordered collection of data items
+*key value pairs that are seperated by commas and enclosed within curly brackets
+*ordered(if you print you will get it in ordered way)
+*it is used to create mapping
+
+to access elements
+------------------
+print(data["name"])
+print(data.get("name"))
+
+*diff is if youu use get method it wont throw error if that key doesnt exist-(willl get none)
+
+to print keys
+--------------
+
+-print(data.keys())
+-for keys in data.keys(): -to get iterated values
+    print(keys) 
+
+to print values:
+-print(data.values())
+-for value in data.values(): -to get iterated values
+    print(keys) 
+
+-to print key value pairs
+print(data.items())->
+
+update
+-------
+data1.update(mark(data2))- adds data2 elements onto data1
+
+clears
+data1.clear()- will create a empty dictionary-data1{}
+
+pop
+data.pop("name")-removes elements
+
+popitem
+a.popitem()-removes last key value pairs
+
+del
+del data->deletes the dictionary
+
+

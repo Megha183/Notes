@@ -137,3 +137,30 @@ Data abstraction in Python is a programming concept that hides complex implement
  Encapsulation means protecting data by restricting direct access to it and allowing 
  only controlled access through methods.
  Python achieves encapsulation by using private variables (prefixing with __) and getter/setter methods.
+
+ Modules and Packages in Python
+🔹 1. What is a Module?
+A module is a single Python file (.py) that contains functions, classes, or variables. 
+It helps organize code into reusable parts.
+
+Different Ways to Import Modules
+
+# Importing the whole module
+import math_operations  
+print(math_operations.add(2, 3))  
+
+# Importing specific functions
+from math_operations import add  
+print(add(2, 3))  
+
+# Renaming a module
+import math_operations as mo  
+print(mo.add(2, 3))  
+
+# Importing all functions (not recommended)
+from math_operations import *  
+print(add(2, 3))  
+
+ 2. What is a Package?
+A package is a collection of modules organized into a directory with a special __init__.py file.
+ It allows you to structure large projects.
