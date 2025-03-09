@@ -1,0 +1,2 @@
+pydantic is  a data validation library in python,it is used by some of the python modules like 
+fast api

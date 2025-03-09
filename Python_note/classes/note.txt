@@ -1,0 +1,23 @@
+HTMLResponse class-fastapi.responses module-to render html response->
+
+to render prebuit thtml template-installl jinja2 temlate library
+pass in decorator(response_class)
+
+
+for serving static files:
+(instal aiofiles)
+from fastapi.staticfiles import StaticFiles
+
+app.mount("/static", StaticFiles(directory="static"), name="static")
+makes static folder accesible publicly
+*submittting a form
+hanlding form data
+python-multipart is a Python package required by FastAPI when handling form data or file upload
+
+Form Class in FastAPI
+The Form class in FastAPI is used to parse form data (application/x-www-form-urlencoded). 
+It allows you to accept form inputs from HTML forms in your FastAPI endpoints.
+
+sending file
+--------------
+shutil Library used to perform file operation

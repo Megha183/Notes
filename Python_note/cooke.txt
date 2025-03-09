@@ -1,0 +1,12 @@
+A cookie is a small piece of data stored in a user's browser. 
+ Real-Life Example: "Remember Me" in Login System
+Imagine you have a login system where users can select "Remember Me" to stay logged in.
+
+If the user checks "Remember Me", the app stores a cookie with their session ID.
+Next time the user visits, the app reads the cookie to auto-login the user.Websites use cookies to remember user preferences, session information, or login details.
+
+*A session ID is a unique identifier assigned to a user when they log in or visit a website. It helps the server recognize the user in future requests without asking them to log in again.
+Session ID (session_id) is like a visitor pass that websites use to remember you.
+It is stored in a cookie and sent with every request so the server can recognize the user.
+Once logged out, the session ID is removed to end the session.
+

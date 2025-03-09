@@ -1,0 +1,24 @@
+By default, FastAPI renders a JSON response to the client. However, 
+it can be cast to a HTML response. 
+For this purpose, FastAPI has HTMLResponse class defined in fastapi.responses module.
+ We need to 
+add response_class as an additional parameter to operation decorator,
+ with HTMLResponse object as its value
+
+senfding file
+------------------
+to send a file to the server you need to use the HTML form’s enctype as multipart/form-data, 
+and use the input type as the file to render a button, 
+which when clicked allows you to select a file from the file system.
+<html>
+   <body>
+      <form action="http://localhost:8000/uploader" method="POST" enctype="multipart/form-data">
+         <input type="file" name="file" />
+         <input type="submit"/>
+      </form>
+   </body>
+</html>
+
+
+ What is the shutil Library in Python?
+The shutil (Shell Utilities) library in Python provides functions for file operations like copying, moving, renaming, and deleting files or directories.
